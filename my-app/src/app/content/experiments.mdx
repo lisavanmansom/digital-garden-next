@@ -1,0 +1,203 @@
+# Experiments
+## View transitions
+
+Voor een smooth overgang zijn er view transitions nodig. Ik ben begonnen om verschillende bronnen door te nemen.
+
+**Bron:**
+- https://developer.chrome.com/docs/web-platform/view-transitions?hl=nl
+- https://developer.mozilla.org/en-US/docs/Web/API/View_Transitions_API
+- https://codepen.io/bramus/pen/GRVRjYE
+- https://www.youtube.com/watch?v=q_2irZO4SS8
+
+#### Code
+
+Om viewtransitions te maken moet je een nieuw file aanmaken en dit file linken op elke page waar je viewtransitions wil.  Door dit toe de onderstaande code toe te voegen ontstaat er een viewtransitions als je navigeert in-between-pages.
+
+**new file:**
+
+```
+<script lang="ts">
+    import { onNavigate } from '$app/navigation';
+    onNavigate((navigation) => {
+        if (!document.startViewTransition) return;
+        return new Promise(resolve => {
+            document.startViewTransition(async () => {
+                resolve();
+                await navigation.complete;
+            });
+        });
+    });
+</script>
+
+```
+
+**script:**
+
+```
+  import ViewTransition from '../navigation.svelte'
+```
+
+**html:**
+
+```
+  <div class="app">
+    <ViewTransition />
+  </div>
+```
+
+## WebGL notities
+
+**bron:** https://thebookofshaders.com
+
+### Shaders
+#### Fragment shader
+
+**Why are shaders fast?**
+Because of parallel processing. Instead of having a couple of big and powerful microprocessors, it is smarter to have lots of tiny microprocessors running in parallel at the same time. That’s what a Graphic Processor Unit (GPU) is.
+
+**What is GLSL?**
+GLSL stands for openGL Shading Language
+
+Hello world! -> In GPU-land rendering text is an overcomplicated task for a first step, instead we'll choose a bright welcoming color to shout our enthusiasm!
+
+// De gl_FragColor = vec4(0.549,0.512,1.000,1.000) -> geeft kleur aan
+
+```
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform float u_time;
+
+void main() {
+	gl_FragColor = vec4(0.549,0.512,1.000,1.000);
+}
+```
+
+**Substantial knowledge from lines of code:**
+1. Shader Language has a single main function that returns a color at the end. 
+2. The final pixel color is assigned to the reserved global variable gl_FragColor.
+3. This C-flavored language has built in variables (like gl_FragColor), functions and types. In this case we've just been introduced to vec4 that stands for a four dimensional vector of floating point precision. 
+4. The four arguments respond to the RED, GREEN, BLUE and ALPHA channels.
+5. Float types are vital in shaders, so the level of precision is crucial. Lower precision means faster rendering, but at the cost of quality. You can be picky and specify the precision of each variable that uses floating point. In the second line (precision mediump float;) we are setting all floats to medium precision. But we can choose to set them to low (precision lowp float;) or high (precision highp float;).
+
+#### Uniforms
+
+Uniforms are effectively global variables you set before you execute your shader program. Each thread receives the same data which it can read but cannot change. Uniforms are defined with the corresponding type at the top of the shader right after assigning the default floating point precision.
+
+**Most of the supported types:**
+1. float
+2. vec2
+3. vec3
+4. vec4
+5. mat2
+6. mat3
+7. mat4
+8. sampler2D
+9. samplerCube
+
+```
+ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;  // Canvas size (width,height)
+uniform vec2 u_mouse;       // mouse position in screen pixels
+uniform float u_time;       // Time in seconds since load
+
+// u_time (time in seconds since the shader started), u_resolution (billboard size where the shader is being drawn) and u_mouse (mouse position inside the billboard in pixels).
+
+uniform vec3 iResolution;   // viewport resolution (in pixels)
+uniform vec4 iMouse;        // mouse pixel coords. xy: current, zw: click
+uniform float iTime;        // shader playback time (in seconds)
+
+// shader toy uniforms
+```
+
+#### installeren
+
+```
+// hiervoor moet cd my-app worden gedaan, anders heb je op de verkeerde plek de npm-packages
+
+npm install vite-plugin-glsl
+```
+
+#### shader.svelte (file in lib)
+
+```
+<script>
+    import { onMount, onDestroy } from 'svelte';
+    import vertexShaderSrc from '../routes/vertex.glsl?raw';
+    import fragmentShaderSrc from '../routes/fragment.glsl?raw';
+
+    let canvas;
+    let animationFrameId;
+
+   // hier zit code van de shader, ik heb de shader geimporteerd vanaf shaderToy
+
+</script>
+
+<canvas bind:this={canvas}></canvas>
+
+// styles
+
+canvas {
+        aspect-ratio: 1/1;
+        border: solid .2em #410A8B;
+        border-radius: 50%;
+        box-shadow: 0px 0px 35px rgb(149, 0, 255);
+        filter: hue-rotate(350deg) invert(1);
+        height: 20em;
+        pointer-events: none;
+        position: absolute;
+        z-index: -1;
+    }
+```
+
+#### +page.svelte (file route)
+
+```
+<script>
+    import Shader from '$lib/shader.svelte';
+</script>
+
+<main>
+    <Shader />
+</main>
+```
+
+#### fragment.glsl (file route)
+
+```
+// Fragment Shader
+precision mediump float;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 fragCoord = gl_FragCoord.xy;
+    float mr = min(u_resolution.x, u_resolution.y);
+    vec2 uv = (fragCoord * 2.0 - u_resolution.xy) / mr;
+
+    float d = -u_time * 0.5;
+    float a = 0.0;
+    for (float i = 0.0; i < 8.0; ++i) {
+        a += cos(i - d - a * uv.x);
+        d += sin(uv.y * i + a);
+    }
+    d += u_time * 0.5;
+    vec3 col = vec3(cos(uv * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5);
+    col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5);
+    gl_FragColor = vec4(col, 1.0);
+}
+```
+
+#### vertex.glsl
+
+```
+// Vertex Shader
+attribute vec4 a_position;
+void main() {
+    gl_Position = a_position;
+}
+```

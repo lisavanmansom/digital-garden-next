@@ -1,0 +1,305 @@
+# Sprint 13
+
+## Framework
+
+Een framework is een set tools, library, en richtlijnen die helpen bij het bouwen van structuren van softwaretoepassingen. Daarnaast zorgt het voor een basisstructuur.
+
+### Getting started
+**What is SvelteKit?**
+
+SvelteKit helps you build web apps while following modern best practices and providing solutions to common development challenges. It offers everything from basic functionalities 
+
+The outcome of this approach is not only smaller application bundles and better performance, but also a developer experience that is more approachable for people that have limited experience of the modern tooling ecosystem.
+
+Svelte sticks closely to the classic web development model of HTML, CSS, and JS, just adding a few extensions to HTML and JavaScript. It arguably has fewer concepts and tools to learn than some of the other framework options.
+
+**Creating a project**
+
+[Bron](https://kit.svelte.dev/docs/creating-a-project)
+
+`npm create svelte@latest my-app`
+`cd my-app`
+`npm install`
+`npm run dev`
+
+2 basic concepts:
+
+1. Each page of your app is a [Svelte](https://svelte.dev/) component
+2. You create pages by adding files to the src/routes directory of your project. These will be server-rendered so that a user's first visit to your app is as fast as possible, then a client-side app takes over
+
+**Other sources**
+
+- [Project structure](https://kit.svelte.dev/docs/project-structure)
+- [Web standards](https://kit.svelte.dev/docs/web-standards)
+
+
+## SvelteKit tutorial
+
+Daarna heb ik de SvelteKit tutorial gevolgd.
+
+## Recap node
+
+Node.js: Javascript runtime (server.js file);
+API-url: url naar database;
+Renderen: inladen date + bestanden in de view;
+
+Sveltekit
+
+- Svelte -> compiler die bestanden gegenereerd;
+- Sveltekit -> library geschreven in Svelte (web framework voor het ontwikkelen van websites);
+- Lightweight;
+- Scoped styling;
+- Reactive state (automatisch omgaan met data updates);
+- Component framework;
+- CSR;
+- Compiler;
+- Folder based routing;
+- Get and Post request ‘onder water’ afgehandeld;
+- Elke route heeft 0.a een server en component (view) bestand;
+- Data wordt geëxporteerd van het server bestand naar het Svelte component;
+- Code op gedeeld op client en op server;
+- Website werkt echter ook als er geen JS is;
+- Wij beginnen Server-side only.
+
+Metaframework (kit) -> SSR, SPA, MPA, SSG;
+
+Directus
+
+- Models ->structuur die data definieert;
+- Content-> plaatjes, img, etc;
+- Data  -> gegevens.
+
+Demo
+
+Global css -> extern ingeladen -> styling voor hele pagina -> root etc (static map)
+
+## Vrijdag 6/sep
+
+Vrijdag hebben we een standup gedaan met het team, verder hebben we elkaar feedback gegeven en hebben we een brainstorm-sessie gehouden voor een individuele opdracht (profilecard). Daarnaast heb we ik ook feedback gegeven aan 1e jaars.
+
+Gegeven feedback 1e jaars:
+- [Issue 1](https://github.com/ArmanVD/your-tribe-profile-card/issues/8);
+- [Issue 2](https://github.com/ArmanVD/your-tribe-profile-card/issues/9);
+- [Issue 3](https://github.com/ColindeGroot/your-tribe-profile-card/issues/2).
+
+
+## Samenwerken en prioriteren
+
+Epic -> Stories -> Tasks
+
+Epic: handige manieren om werk te organiseren en hiërarchie te creëren. Epics helpen teams werk op te splitsen terwijl ze naar een grotere doel toewerken. Epics zijn dus grote stukken werk die kunnen worden opgesplitst in kleinere taken, die vervolgens in sprints kunnen worden voltooid.
+
+In 1 zin noemen wat het project is. (epic)
+
+Stories: Een epic kan je onderverdelen in stories (userstories). Userstories hebben altijd dezelfde vorm, “als gebruiker - wil ik”. Door userstories maak je bespreekbaar wat er moet worden gedaan. Stories zijn minder concreet dan userstories. Stories zijn een directe taak, userstories zijn concrertere taken van de stories.
+
+## Planning poker
+
+Consensus-gebaseerde techniek voor het schatten, vooral gebruikt voor timeboxing in Agile principes. Leden van de groep geven schattingen door genummerde kaarten op tafel te leggen of een getal op te schrijven in plaats van dit hardop te zeggen. De kaarten worden omgedraaid en de schattingen worden vervolgens besproken. Door de cijfers te verbergen, kan cognitieve bias van veeranking vermijden, waarbij het eerste hardop gesproken cijfer een precedent schept voor volgende schattingen.
+
+## Prioriteren 
+
+**Moscow principes:**
+- Must haves -> dit moet af op de deadline, als het niet af is dan is het project gefaald.
+- Should haves -> dit zou eigenlijk best wel af moeten, het project is eenbeetje jammer, als het niet af is.
+- Could haves -> dit kan, mits we tijd over hebben
+- Want to have but will not have this sprint -> dit zijn goede ideeën en nuttig om te noteren maar we komen er nu niet aan toe.
+
+# Sprint 14
+## Sveltekit principles
+
+**Structuur**
+
+In src staat alles wat svelte nog moet uitvoeren
+Vite -> buildtools voor webomgeving
+
+**Error handeling**
+
++error.svelte —> voor error handeling
+error.html —> voor errorr handeling als svelte niet meer werkt.
+
++layout.svelte —> layout format gerendered
+
+**Loading data**
+
+In server.js (vb code) —>
+
+```
+Return { For: “”; Bar: 42; Type: “”;}
+```
+
+In +page.svelte —> Export let data
+
+**Binding**
+
+```
+<Input bind:value={name} />
+<p>hello {name}<p/>
+```
+
+**Library**
+
+In de index.js moet een verzameling.van componenten staan (wat ik nu soort van heb in de script)
+
+Toepassing in index.js (file in lib):
+```
+export { default as MeshgradBlue } from './meshgrad-blue.svelte'
+export { default as MeshgradRed } from './meshgrad-red.svelte'
+export { default as MeshgradGreen } from './meshgrad-green.svelte'
+export { default as MeshgradPink } from './meshgrad-pink.svelte'
+export { default as ArrowL } from './arrow-l.svelte'
+export { default as ArrowR } from './arrow-r.svelte'
+```
+
+Uitwerking in +page.svelte:
+
+```
+import {MeshgradBlue, MeshgradRed, MeshgradGreen, MeshgradPink, ArrowL, ArrowR} from '$lib'
+```
+
+**Export**
+
+In +page.svelte in script -> ```Import {header, footer} from $lib```
+
+## Over Agile, scrummed en project management
+
+**Waterval vs Agile**
+
+Waterval: Specification related paradigms;
+Agile: Comprehensive-system.
+
+Nieuwe Agile instrumenten
+
+Get Agile
+
+## Voorbereiden sprint review & retrospect
+
+Sprint review: kijken wat je gedaan hebt en hoe ver je bent gekomen (met de opdrachtgever)
+
+**Doel:**
+- specifieke vragen stellen voor feedback (van tevoren hebt bedacht);
+- demo;
+- langs user stories gaan van de ze sprint;
+- website laten zien, naast het design;
+- laten zien wat er nog niet is gelukt a.d.h.v. het design;
+- tijdens de demo benadrukken wat de punten zijn waar je feedback op wilt hebben;
+- met enthousiasme;
+- voorstel om een functionaliteit beter te maken (feedback geven aan de opdrachtgever);
+- uitkomst testen bespreken;
+- plan voor de komende sprint;
+- werk opleveren.
+
+**Rollen:**
+- presentator;
+- feedback verwerker / notulist (issues);
+- cheerleader;
+- timekeeper.
+
+# Sprint 15 Choices, Choices
+**Deze sprint:**
+- Shanta van triple;
+- weluvweb: … Pieters;
+- Kevin Lewis;
+- JS-challenge;
+- Stagemarkt;
+- Workshop mentoring;
+- Het onderbouwen van keuzes van een framework, tools en workflow;
+- Presentatie van gemaakte keuze - verantwoording;
+
+**Vrije ruimte / stage:**
+- 10 weken stage -> uitvoerend werk / meeloopstage
+- 20 weken stage -> meer verantwoording, eigen projecten of deels eigen projecten / meesterproef
+
+## Techstack 
+
+User experience + development principles = development experience 
+
+**3 gebruikersgroepen:**
+- User experience 
+- content management experience
+- development experience 
+
+## Presenteren van een argument
+**Het argumentatie proces in 4 stappen:**
+- Formulier een standpunt en selecteer een argument -> wat zijn voordeel en nadelen van het argument;
+- Maak een argumentatieschema -> schematische weergeven van argumenten;
+- Beoordelen van aanvaardbaarheid;
+- Argumentatieschema uitwerken;
+
+**Doorlopend argumentatie process:**
+- Formulier een standpunt en selecteer een passend argumenten
+- Maak argumentatieschema
+- Beoordeel de aanvaardbaarheid
+
+# Sprint 16: Don’t repeat yourself
+
+## Component library en morphological charts
+
+**Component library -> mapje met alle componenten**
+
+Een verzameling vooraf gemaakte, geteste en goed gedocumenteerde UI-componenten die eenvoudig kunnen worden hergebruikt in de gebruikersinterface van een product. Het zorgt ervoor dat het product een consistente uitstraling en gevoel heeft een bevordert efficiëntie en schaalbaarheid. Met componenten-bibliotheken kunnen ontwerpers en ontwikkelaars snel nieuwe functies en pagina’s toevoegen, terwijl de algehele ontwerp consistentie en kwaliteit behouden blijft.
+
+## Building block
+
+**RAPPE websites -> responsive, accessible, performance, progressive enhancement;**
+
+## Advanced Component Concepts
+
+### Page-section-component
+- Page: volledige pagina met specifieke context
+- Section: secties van een pagina bestaand uit componenten
+- Componenten: herbruikbare componenten binnen de secties
+
+### Functional layering
+- Inputs: componenten voor gebruiksinvoer
+- Display: componenten voor het weergeven van informatie (tabellen / grafieken
+- Navigation: componenten voor navigatie
+- Structural: layout- elementen die structuur bieden, grids, containers
+
+### Lego
+- Bricks: kleine, niet herbruikt stukjes, een icoon of tekstblok
+- Blocks: herbruikbuire basis-componenten, een knop of een afbeelding
+- Assemblages: gecombineerde componenten met een specifieke functie, formulier of kaarten
+- Constructions: complexe pagina, secties of templates, dashboards
+
+### Atomic design
+- Atoms: basis bouwblokken van je pagina, button, inputs
+- Molecules: een groep moleculen bij elkaar, zoekformulier
+- Organism: een groep moleculen die samen een sectie van je website vormen, een header balk 
+- Templates: een group organism die samen een paginatype vormen, een overzichtspagina of detailspage
+
+### Presenter-container
+- Presentational components: UI-specifieke, stateless-components die bepalen hoe data getoond wordt
+- Container components: componenten die de presentational components van data voorzien en hun gedrag bepalen
+- Compositions: combinatie van containers en presentational components die specifieke pagina-secties vormen
+
+## The new responsive
+
+**User preference styles:** queries, colour scheme, reduce motion;
+**Viewport & form-factor:** media queries; 
+**Macro layouts:** container styles, macro components that contain other components;
+**Container styles:** container queries, scoped styles, and component-specific styles.
+
+**User preference media features (level 5):**
+- Prefers-reduced-motion;
+- Prefers-reduced-transparency;
+- Prefers-contrast;
+- Prefers-colors;
+- Prefers-colors-scheme;
+- Prefers-reduced-data.
+
+# Sprint 17: User needs
+## Spikes en creative coding
+
+### Coding spikes
+
+A type of computer programming in which the goal is to create something expressive instead of something functional. Kan de gebruiker verrast worden met een bijzondere interactie?
+
+**Woordenlijst:** Flow- visuele hiërarchie - animatie - visual height - visual direction - dominance - focal point- composition - reading patterns - symmetrisch - asymmetrisch - radiaal - mozaiek - storytelling - scrollytelling
+
+### Flow
+Flow is about movement and direction, and leading the eye from one part of a composition to another. You create flow through a combination of visual weight (hierachy) and visual direction.
+
+Visual hierachy enables visitors to scan information. It helps you communicate a message quickly and effectively 
+
+The dominant-element in a design is the one with the greatest visual weight (focal point). Reading patterns on text heavy and design-light pages often follow an F or Z path. The dominant element is noticed first and sets the context for what’s seen next, it should emphasize your most import information, because it might be the only thing anyone will see.

@@ -1,18 +1,21 @@
-import Link from "next/link"
-import { getBlogs } from "./fetchers"
+import Link from "next/link";
 
-export default async function BlogsPage() {
-  const blogs = await getBlogs()
+export default function Home() {
+  const titles = ["Dixie Spectacular", "Extreme Surf & Turf", "Dynamite Shrimp Po'Boy", "Cape Canaveral Special", "Maine Lobster & Snow Crab", "Sand Point Sampler"]
+  const categories = ["notes", "experiments", "weluvweb", "capaciteiten-en-beperkingen", "student-assistent", "progress-questions" ]; // blog categories
+
   return (
     <main>
-      {blogs.map((blog, i) => (
-        <article key={i} className="grid grid-cols-4 text-3xl">
-          <h1>test</h1>
-          <p>test</p>
-          <p>test</p>
-          <Link href={`/blogs/${blog.slug}`}>Read More</Link>
-        </article>
-      ))}
+      <h1>Dixie Crossroad specials</h1>
+      <ul>
+        {categories.map((category, index) => (
+          <li key={category}>
+            <Link href={`/blogs/${category}`}>
+              {titles[index] || charAt(0).toUpperCase() + category.slice(1)}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </main>
   )
 }

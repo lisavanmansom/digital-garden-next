@@ -19,9 +19,11 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://en.wikipedia.org/wiki/Rick_Ross">portfolio</a>
-        <a href="https://en.wikipedia.org/wiki/Rick_Ross">email</a>
-        <a href="https://en.wikipedia.org/wiki/Rick_Ross">linkedin</a>
+        <ul>
+          <li><a href="https://portfolio-lisavanmansoms-projects.vercel.app">portfolio</a></li>
+          <li><a href="mailto:lisavanmansom@gmail.com">mail</a></li>
+          <li><a href="https://www.linkedin.com/in/lisa-van-mansom-b78059231/">linkedin</a></li>
+        </ul>  
       </footer>
     </div>
   );

@@ -1,0 +1,15 @@
+.navigation {
+    display: flex;
+    transform: rotate(-90deg) translateX(-90vh);
+}
+
+.ul {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 4em;
+    height: 3em;
+    justify-content: center;
+    list-style: none;
+    min-width: 100vh;
+}

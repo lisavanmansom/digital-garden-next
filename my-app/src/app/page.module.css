@@ -1,0 +1,26 @@
+.page {
+    align-items: center;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;  
+    position: relative;
+    width: 100%;
+}
+
+.main {
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+.header {
+    background-color: var(--primary);
+    left: 0;
+    position: absolute;
+    min-height: 100vh;
+    width: 3em;
+    z-index: 2;
+}

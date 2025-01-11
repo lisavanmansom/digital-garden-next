@@ -1,0 +1,92 @@
+:root {
+  --primary: #FF0000;
+
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* grey-shades */
+  --b2w-75: #292929;
+  --b2w-60: #626262;
+  --b2w-45: #8F8F8F;
+  --b2w-30: #A0A0A0;
+  --b2w-15: #cacaca;
+
+  /* Accent colours */
+  --accent-1: #FC00C3;
+  --accent-1-h: #FC66DB;
+  --accent-1-s: #990074;
+
+  --accent-2: #2CFF5A;
+  --accent-2-h: #66FE9B;
+  --accent-2-s: #169935;
+
+  --accent-3: #2A00FF;
+  --accent-3-h: #7F66FF;
+  --accent-3-s: #190099;
+
+  --accent-4: #FEEE01;
+  --accent-4-h: #F6ED63;
+  --accent-4-s: #998E01;
+
+  --accent-5: #29C2FF;
+  --accent-5-h: #65D8FB;
+  --accent-5-s: #157599;
+
+  /* standard dynamic range gradients */
+  --sdr-gradient-1: linear-gradient(90deg, #20c4f5 0%, #f00 50%, #2b00ff 100%);
+  --sdr-gradient-2: linear-gradient(90deg, #a5d951 0%, #f00 50%, #8000ff 100%);
+  --sdr-gradient-3: linear-gradient(90deg, #ff00c3 0%, #f00 50%, #00a1ff 100%);
+  --sdr-gradient-4: linear-gradient(90deg, #40ec7c 0%, #f00 50%, #fe0 100%);
+  --sdr-gradient-5: linear-gradient(90deg, #2b00ff 0%, #f00 50%, #ff00c3 100%);
+
+  /* high dynamic range gradients */
+  --hdr-gradient-1: linear-gradient(90deg in oklab, #20C4F5 0%, #FF0000 50%, #2B00FF 100%);
+  --hdr-gradient-2: linear-gradient(90deg in oklab, #A5D951 0%, #FF0000 50%, #8000FF 100%);
+  --hdr-gradient-3: linear-gradient(90deg in oklab, #FF00C3 0%, #FF0000 50%, #00A1FF 100%);
+  --hdr-gradient-4: linear-gradient(90deg in oklab, #40EC7C 0%, #FF0000 50%, #FFEE00 100%);
+  --hdr-gradient-5: linear-gradient(90deg in oklab, #2B00FF 0%, #FF0000 50%, #FF00C3 100%);
+
+  /* Default to SDR */
+  --gradient-1: var(--sdr-gradient-1);
+  --gradient-2: var(--sdr-gradient-2);
+  --gradient-3: var(--sdr-gradient-3);
+  --gradient-4: var(--sdr-gradient-4);
+  --gradient-5: var(--sdr-gradient-5);
+}
+
+@media (dynamic-range: high) {
+  :root {
+    /* Override SDR gradients to HDR gradients */
+    --gradient-1: var(--hdr-gradient-1);
+    --gradient-2: var(--hdr-gradient-2);
+    --gradient-3: var(--hdr-gradient-3);
+    --gradient-4: var(--hdr-gradient-4);
+    --gradient-5: var(--hdr-gradient-5);
+  }
+}
+
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

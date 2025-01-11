@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import styles from './LinkBlock.module.css';
 
 const LinkBlock = () => {
     const links = [
@@ -7,16 +8,17 @@ const LinkBlock = () => {
         { pathname: "/blogs", text: "Rick ross" },
         { pathname: "/blogs", text: "Rick ross" },
         { pathname: "/blogs", text: "Rick ross" },
+        { pathname: "/blogs", text: "Rick ross" },
     ];
 
     return (
-        <>
+        <div className={styles.container}>
             {links.map((link, index) => (
-                <Link key={index} href={{pathname: link.pathname,}}>
+                <Link className={styles.link} key={index} href={{pathname: link.pathname,}}>
                     {link.text}
                 </Link>
             ))}
-        </>
+        </div>
     )
 }
 

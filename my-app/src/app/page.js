@@ -1,7 +1,7 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 import LinkBlock from '../components/atoms/linkblock/LinkBlock'; 
-import Navigation from '../components/molecules/navigation/Navigation'
+import Navigation from '../components/molecules/navigation/Navigation';
+import MiddleCircle from "../components/atoms/MiddleCircle/MiddleCircle";
 
 export default function Home() {
   return (
@@ -13,8 +13,7 @@ export default function Home() {
         <h1>Learning Journal</h1>
         <h2>pasta con crema di broccoli e guanciale picanha</h2>
 
-        <Image src="/images/pf-pic.png"  alt="Picture of the author"
-          width={500} height={500} />
+        <MiddleCircle />
       
         <LinkBlock />
 

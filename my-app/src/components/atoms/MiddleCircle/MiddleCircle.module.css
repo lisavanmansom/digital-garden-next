@@ -1,0 +1,77 @@
+.outerCircle {
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    border: 8px solid var(--primary);
+    border-radius: 50%;
+    container: circle-banner / inline-size;
+    display: grid;
+    justify-self: center;
+    pointer-events: none;
+    transform: scale(1.4);
+    width: 90vw;
+}
+
+.img {
+    border: 8px solid var(--primary);
+    border-radius: 50%;
+    filter: saturate(2.5);
+    height: 85%;
+    margin: 0 auto;
+    object-fit: cover;
+    -webkit-backdrop-filter: blur(5px);
+    width: 75vw;
+    z-index: 3;
+}
+
+.saturation {
+    background-image: linear-gradient(
+        180deg in oklab,
+        oklch(66% 0.5 347) 0%, oklch(82% 0.5 127) 13%, oklch(84% 0.42 150) 26%, oklch(77% 0.5 225) 39%, oklch(72% 0.44 246) 52%, oklch(46% 0.4 269) 65%, oklch(53% 0.5 294) 78%, oklch(67% 0.5 343) 91%, oklch(63% 0.5 29) 104%
+      );;
+    mix-blend-mode: saturation;
+    z-index: 1;
+}
+
+.exclusion {
+    background-image: linear-gradient(
+        180deg in oklab,
+        oklch(63% 0.26 29) 0%, oklch(84% 0.21 150) 100%
+      );;
+    mix-blend-mode: exclusion;
+    z-index: 2;
+}
+
+.saturation, .exclusion {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    opacity: .5;
+    position: absolute;
+    width: 100%;
+}
+
+@container circle-banner (width > 525px){
+    .img {
+        border: .8em solid var(--primary);
+        width: 75vw;
+    }
+}
+
+@container circle-banner (width > 650px){
+    .img {
+        width: 35.2em;
+    }
+}
+
+@media (min-width: 525px) {
+    .outerCircle {
+        border: .8em solid var(--primary);
+        transform: scale(1);
+    }
+}
+
+@media (min-width: 750px) {
+    .outerCircle {
+        position: absolute;
+        width: 42.2em;
+    }
+}

@@ -1,0 +1,8 @@
+.triangle {
+    transform: translate(-50%, -50%);
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-top: 80px solid #f00;
+    pointer-events: none;
+    transform-origin: top;
+}

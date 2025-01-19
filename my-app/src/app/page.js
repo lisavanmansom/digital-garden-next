@@ -3,6 +3,7 @@ import LinkBlock from '../components/atoms/linkblock/LinkBlock';
 import Navigation from '../components/molecules/navigation/Navigation';
 import MiddleCircle from "../components/atoms/MiddleCircle/MiddleCircle";
 
+
 export default function Home() {
   return (
     <div className={styles.page}>
@@ -16,7 +17,6 @@ export default function Home() {
         <MiddleCircle />
       
         <LinkBlock />
-
 
       </main>
     </div>

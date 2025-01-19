@@ -23,8 +23,8 @@
 .header {
     background-color: var(--primary);
     left: 0;
-    position: absolute;
-    min-height: 100vh;
+    position: fixed;
+    min-height: 100dvh;
     width: 3em;
     z-index: 2;
 }

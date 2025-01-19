@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from './MiddleCircle.module.css';
+import LaserCursor from "../LaserCursor/LaserCursor";
 
 function MiddleCircle () {
     return (
@@ -11,6 +12,10 @@ function MiddleCircle () {
                     src="/images/pf-pic.png"  alt="Picture of the author"
                     width={500} height={500} 
                 />
+                <div className={styles.laserContainer}>
+                    <LaserCursor />
+                    <LaserCursor />
+                </div>
         </div>
     )
 }

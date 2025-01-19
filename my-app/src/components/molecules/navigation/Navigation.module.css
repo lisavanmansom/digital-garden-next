@@ -1,15 +1,26 @@
 .navigation {
     display: flex;
-    transform: rotate(-90deg) translateX(-90vh);
+    position: relative;
+    background-color: var(--primary);
+    min-height: 50em;
+   
 }
 
 .ul {
     align-items: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 4em;
     height: 3em;
     justify-content: center;
     list-style: none;
     min-width: 100vh;
+    position: fixed;
+    left: 1.35em;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.li {
+    transform: rotate(-90deg);
 }

@@ -3,7 +3,6 @@
     aspect-ratio: 1 / 1;
     border: 8px solid var(--primary);
     border-radius: 50%;
-    container: circle-banner / inline-size;
     display: grid;
     justify-self: center;
     pointer-events: none;
@@ -49,29 +48,28 @@
     width: 100%;
 }
 
-@container circle-banner (width > 525px){
-    .img {
-        border: .8em solid var(--primary);
-        width: 75vw;
-    }
-}
-
-@container circle-banner (width > 650px){
-    .img {
-        width: 35.2em;
-    }
+.laserContainer {
+    left: 50%;
+    mix-blend-mode: difference;
+    position: fixed;
+    transform: matrix(0, 1, 1, 0, -10, -30) rotate(0deg);
+    top: 50%;
+    z-index: 9999;
 }
 
 @media (min-width: 525px) {
-    .outerCircle {
-        border: .8em solid var(--primary);
-        transform: scale(1);
-    }
+    .outerCircle { border: .8em solid var(--primary);
+        width: 40em; }
+    .img { border: .8em solid var(--primary);
+        height: 30em; width: 30em; }
 }
 
-@media (min-width: 750px) {
-    .outerCircle {
-        position: absolute;
-        width: 42.2em;
-    }
+@media (min-width: 1300px) {
+    .outerCircle { width: 50em; }
+    .img { height: 40em; width: 40em; }
+}
+
+@media (min-width: 1700px) {
+    .laserContainer {  display: flex;
+        transform: matrix(0, 1, 1, 0, -250, 0) rotate(-90deg); }
 }

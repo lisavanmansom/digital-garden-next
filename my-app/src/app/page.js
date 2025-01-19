@@ -11,8 +11,8 @@ export default function Home() {
         <Navigation />
       </header>
       <main className={styles.main}>
-        <h1>Learning Journal</h1>
-        <h2>pasta con crema di broccoli e guanciale picanha</h2>
+        <h1 className={styles.h1}>Learning<span className={styles.span}>Journal</span></h1>
+        <h2 className={styles.h2}>pasta con crema di broccoli e guanciale picanha</h2>
 
         <MiddleCircle />
       

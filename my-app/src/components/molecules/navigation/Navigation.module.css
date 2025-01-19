@@ -3,14 +3,13 @@
     position: relative;
     background-color: var(--primary);
     min-height: 50em;
-   
 }
 
 .ul {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 4em;
+    gap: 7em;
     height: 3em;
     justify-content: center;
     list-style: none;
@@ -22,5 +21,9 @@
 }
 
 .li {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 2.5em;
+    letter-spacing: -2px;
     transform: rotate(-90deg);
 }

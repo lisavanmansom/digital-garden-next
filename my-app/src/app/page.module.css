@@ -10,6 +10,39 @@
     width: 100%;
 }
 
+.h1 {
+    display: grid;
+    font-size: clamp(4.5rem, 3.625rem + 4.6667vw, 8rem);
+    font-weight: 600;
+    letter-spacing: -4px;
+    line-height: 1em;
+    position: absolute;
+    right: 4%;
+    text-align: right;
+    top: 4%;
+    z-index: 100;
+
+    .span {
+        font-style: italic;
+        font-weight: 500;
+    }
+}
+
+.h2 {
+    display: grid;
+    bottom: 5%;
+    font-size: clamp(4rem, 3.25rem + 4vw, 7rem);
+    font-weight: 600;
+    letter-spacing: -4px;
+    line-height: 1em;
+    mix-blend-mode: overlay;
+    position: absolute;
+    left: -4%;
+    text-align: right;
+    z-index: 100;
+}
+
+
 .main {
     align-items: center;
     display: flex;
